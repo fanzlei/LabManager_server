@@ -9,13 +9,13 @@ import java.sql.Statement;
 
 public class MysqlConnector {
 
-	Statement stmt;
+	public Statement stmt;
 	Connection conn;
 	public MysqlConnector() {
 		// TODO Auto-generated constructor stub
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager?useUnicode=true&characterEncoding=utf-8","root","");
+			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager","root","");
 			stmt=conn.createStatement();
 			   
 		} catch (ClassNotFoundException e) {

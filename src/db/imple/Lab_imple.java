@@ -1,6 +1,5 @@
 package db.imple;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,12 +68,13 @@ public class Lab_imple implements LabDao{
 		sql="select * from lab";
 		List<Lab> list=new ArrayList<Lab>();
 		try {
-			result=stmt.executeQuery(sql);
+			Statement s=new MysqlConnector().getStatement();
+			ResultSet result=s.executeQuery(sql);
 			while(result.next()){
+				System.out.println(result.getString("name")); 
 				Lab lab=new Lab();
 				lab.setId(result.getInt("id"));
 				lab.setName(result.getString("name"));
-				System.out.println(result.getString("name")); 
 				lab.setLab_no(result.getInt("lab_no"));
 				lab.setDescribe(result.getString("describe"));
 				list.add(lab);
