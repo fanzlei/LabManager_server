@@ -1,9 +1,11 @@
-package fanz.sql;
+package db.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 public class MysqlConnector {
 
@@ -13,8 +15,9 @@ public class MysqlConnector {
 		// TODO Auto-generated constructor stub
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn=DriverManager.getConnection("jdbc:mysql://192.168.0.108:3306/fanz","fanz","123456");
+			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager?useUnicode=true&characterEncoding=utf-8","root","");
 			stmt=conn.createStatement();
+			   
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

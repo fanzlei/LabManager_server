@@ -1,20 +1,26 @@
-package josnUtils;
+package utils;
 
-import java.sql.Date;
+import net.sf.json.JSONObject;
+
 
 public class User {
 
-	int id ;
-	String name ;
-	String pass ;
-	String phone ; 
-	Date date ;
-	boolean pass_status ;
-	String department ;
-	String classes;
+	private int id =-1;
+	private String name=null;
+	private String pass =null;
+	private String phone =null; 
+	private boolean pass_status;
+	private String classes=null;
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+	public User(JSONObject jo){
+		name=jo.getString("name");
+		pass=jo.getString("pass");
+		phone=jo.getString("phone");
+		classes=jo.getString("pass_status");
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -39,24 +45,14 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public boolean isPass_status() {
+	
+	public boolean getPass_status() {
 		return pass_status;
 	}
 	public void setPass_status(boolean pass_status) {
 		this.pass_status = pass_status;
 	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+	
 	public String getClasses() {
 		return classes;
 	}

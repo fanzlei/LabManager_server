@@ -1,9 +1,14 @@
-package josnUtils;
+package jsonUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import utils.User;
 
 public class JsonUtils {
 
@@ -11,7 +16,7 @@ public class JsonUtils {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String inputStreamToString(InputStream is){
+	public JSONObject inputStreamToJsonObject(InputStream is){
 		BufferedReader br=new BufferedReader(new InputStreamReader(is));
 		String jsonString="";
 		String str;
@@ -23,9 +28,16 @@ public class JsonUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return jsonString;
+		JSONObject jo=JSONObject.fromObject(jsonString);
+		return jo;
 	}
-	public User getUser(String jsonString){
+	public JSONObject getJsonObject(String key,boolean value){
+		JSONObject jo=new JSONObject();
+		jo.put(key, value);
+		return jo;
+	}
+	
+    public JSONArray getJsonArray(List<User> list){
 		
 		return null;
 	}
