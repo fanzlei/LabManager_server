@@ -54,6 +54,8 @@ public class Do_appointment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.request=request;
+		response.setContentType("text/html;charset=utf8");
+		request.setCharacterEncoding("utf8");
 		out=response.getWriter();
 		switch(request.getParameter("tag")){
 		case "add":

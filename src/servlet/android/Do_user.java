@@ -52,7 +52,8 @@ public class Do_user extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.setContentType("text/html;charset=utf8");
+		request.setCharacterEncoding("utf8");
 		out=response.getWriter();
 		this.request=request;
 		switch(request.getParameter("tag")){
@@ -171,8 +172,9 @@ public class Do_user extends HttpServlet {
 		User user=new User();
 		user.setName(request.getParameter("name"));
 		User sqlUser= user_imple.query(user);
-		if(sqlUser!=null){
+		if(sqlUser!=null&&sqlUser.getPass().equals(request.getParameter("pass"))){
 			//用户存在，密码正确
+			System.out.println("用户登录："+user.getName());
 			request.getSession().setAttribute("name", sqlUser.getName());
 			JSONObject joo= jsonUtils.getJsonObject("login", sqlUser.getPass().equals(request.getParameter("pass")));
 			joo.put("name", sqlUser.getName());

@@ -71,7 +71,6 @@ public class Lab_imple implements LabDao{
 			Statement s=new MysqlConnector().getStatement();
 			ResultSet result=s.executeQuery(sql);
 			while(result.next()){
-				System.out.println(result.getString("name")); 
 				Lab lab=new Lab();
 				lab.setId(result.getInt("id"));
 				lab.setName(result.getString("name"));
