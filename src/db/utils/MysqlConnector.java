@@ -15,7 +15,7 @@ public class MysqlConnector {
 		// TODO Auto-generated constructor stub
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager","root","");
+			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager?useUnicode=true&characterEncoding=utf8","root","");
 			stmt=conn.createStatement();
 			   
 		} catch (ClassNotFoundException e) {
