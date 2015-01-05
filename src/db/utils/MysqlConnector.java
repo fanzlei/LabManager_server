@@ -13,11 +13,25 @@ public class MysqlConnector {
 	Connection conn;
 	public MysqlConnector() {
 		// TODO Auto-generated constructor stub
-		try {
+		connect();
+	}
+    public Statement getStatement(){
+    	try {
+			if(stmt.isClosed()){
+				connect();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return stmt;
+    }
+    private void connect(){
+    	try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lab_manager?useUnicode=true&characterEncoding=utf8","root","");
 			stmt=conn.createStatement();
-			   
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,9 +39,5 @@ public class MysqlConnector {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-    public Statement getStatement(){
-    	
-    	return stmt;
     }
 }
