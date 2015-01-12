@@ -8,12 +8,12 @@ import utils.User;
 import db.dao.UserDao;
 import db.utils.MysqlConnector;
 
-public class User_imple implements UserDao{
+public class UserImple implements UserDao{
 
 	private Statement stmt;
 	private String sql;
 	private ResultSet result;
-	public User_imple(){
+	public UserImple(){
 		stmt=new MysqlConnector().getStatement();
 	}
 	@Override

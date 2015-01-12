@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db.imple.Appo_imple;
-import db.imple.Lab_imple;
+import db.imple.AppoImple;
+import db.imple.LabImple;
 import utils.Appo;
 import utils.Lab;
 import jsonUtils.JsonUtils;
@@ -24,17 +24,17 @@ import net.sf.json.JSONObject;
  * Servlet implementation class Client_book
  */
 @WebServlet("/Do_appointment")
-public class Do_appointment extends HttpServlet {
+public class DoAppointment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	HttpServletRequest request;
 	PrintWriter out;
-	Appo_imple appo_imple=new Appo_imple();
+	AppoImple appo_imple;
 	JsonUtils jsonUtils=new JsonUtils();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Do_appointment() {
+    public DoAppointment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +44,6 @@ public class Do_appointment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		doPost(request,response);
 	}
 
@@ -57,6 +56,7 @@ public class Do_appointment extends HttpServlet {
 		response.setContentType("text/html;charset=utf8");
 		request.setCharacterEncoding("utf8");
 		out=response.getWriter();
+		appo_imple=new AppoImple();
 		switch(request.getParameter("tag")){
 		case "add":
 			doAdd();
@@ -83,7 +83,7 @@ public class Do_appointment extends HttpServlet {
 		// TODO Auto-generated method stub
 		Lab lab=new Lab();
 		lab.setLab_no(Integer.valueOf(request.getParameter("lab_no")));
-		JSONArray ja=new Appo_imple().query(lab);
+		JSONArray ja=new AppoImple().query(lab);
 		if(ja.size()>0){
 			out.print(ja);
 			out.flush();
@@ -97,7 +97,7 @@ public class Do_appointment extends HttpServlet {
 
 	private void doGetLabList() {
 		// TODO Auto-generated method stub
-		List<Lab> list= new Lab_imple().query();
+		List<Lab> list= new LabImple().query();
 		if(list.size()>0){
 			JSONArray jsonArray=new JSONArray();
 			for(int i=0;i<list.size();i++){

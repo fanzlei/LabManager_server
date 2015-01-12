@@ -14,12 +14,12 @@ import utils.User;
 import db.dao.AppoDao;
 import db.utils.MysqlConnector;
 
-public class Appo_imple implements AppoDao{
+public class AppoImple implements AppoDao{
 
 	private Statement stmt;
 	private ResultSet result;
 	private String sql;
-	public Appo_imple(){
+	public AppoImple(){
 		stmt=new MysqlConnector().getStatement();
 	}
 	@Override

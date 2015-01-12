@@ -10,12 +10,12 @@ import utils.Lab;
 import db.dao.LabDao;
 import db.utils.MysqlConnector;
 
-public class Lab_imple implements LabDao{
+public class LabImple implements LabDao{
 
 	private Statement stmt;
 	private ResultSet result;
 	private String sql;
-	public Lab_imple(){
+	public LabImple(){
 		stmt=new MysqlConnector().getStatement();
 	}
 	@Override

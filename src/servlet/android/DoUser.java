@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db.imple.Appo_imple;
-import db.imple.Teacher_imple;
-import db.imple.User_imple;
+import db.imple.AppoImple;
+import db.imple.TeacherImple;
+import db.imple.UserImple;
 import utils.Appo;
 import utils.Teacher;
 import utils.User;
@@ -25,16 +25,16 @@ import jsonUtils.JsonUtils;
  * Servlet implementation class ForClient
  */
 @WebServlet("/Do_user")
-public class Do_user extends HttpServlet {
+public class DoUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private JsonUtils jsonUtils=new JsonUtils();
     private PrintWriter out;
-    private User_imple user_imple=new User_imple();
+    private UserImple user_imple;
     HttpServletRequest request;
     /** 
      * @see HttpServlet#HttpServlet()
      */
-    public Do_user() {
+    public DoUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -56,6 +56,7 @@ public class Do_user extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		out=response.getWriter();
 		this.request=request;
+		user_imple=new UserImple();
 		switch(request.getParameter("tag")){
 		case "login":
 			doLogin();
@@ -85,7 +86,7 @@ public class Do_user extends HttpServlet {
 		// TODO Auto-generated method stub
 		JSONObject jo=new JSONObject();
 		
-		Teacher tea=new Teacher_imple().query(Integer.valueOf(request.getParameter("lab_no")));
+		Teacher tea=new TeacherImple().query(Integer.valueOf(request.getParameter("lab_no")));
 		if(tea.getPass_status()){
 			jo.put("name", tea.getName());
 			jo.put("phone", tea.getPhone());
@@ -104,7 +105,7 @@ public class Do_user extends HttpServlet {
 		// TODO Auto-generated method stub
 		User user=new User();
 		user.setName(request.getParameter("name"));
-		List<Appo> list= new Appo_imple().query(user);
+		List<Appo> list= new AppoImple().query(user);
 		if(list.size()>0){
 			JSONArray jsonArray=new JSONArray();
 			for(int i=0;i<list.size();i++){

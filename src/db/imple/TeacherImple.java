@@ -12,12 +12,12 @@ import utils.Teacher;
 import db.dao.TeacherDao;
 import db.utils.MysqlConnector;
 
-public class Teacher_imple implements TeacherDao{
+public class TeacherImple implements TeacherDao{
 
 	private Statement stmt;
 	private ResultSet result;
 	private String sql;
-	public Teacher_imple(){
+	public TeacherImple(){
 		stmt=new MysqlConnector().getStatement();
 	}
 	@Override
